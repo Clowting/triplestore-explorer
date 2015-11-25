@@ -1,3 +1,5 @@
+package triplestoreexplorer;
+
 import static spark.Spark.*;
 
 /**
