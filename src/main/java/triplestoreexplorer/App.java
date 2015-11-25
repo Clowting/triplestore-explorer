@@ -11,7 +11,7 @@ public class App {
     private static String title = "A web-based Triplestore explorer";
 
     public App() {
-        buildRoutes();
+
     }
 
     /**
@@ -23,12 +23,15 @@ public class App {
         staticFileLocation("/public");
 
         // Define routes
-        get("/hello", (req, res) -> "Hello World");
+        get("/", (req, res) -> "Hello World");
 
     }
 
     public static void main(String[] args) {
         App app = new App();
+
+        // Build routes
+        app.buildRoutes();
     }
 
 }
