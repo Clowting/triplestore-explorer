@@ -19,6 +19,10 @@ public class App {
      */
     private void buildRoutes() {
 
+        // Static resources location
+        staticFileLocation("/public");
+
+        // Define routes
         get("/hello", (req, res) -> "Hello World");
 
     }
