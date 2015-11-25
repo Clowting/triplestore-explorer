@@ -1,11 +1,28 @@
+import static spark.Spark.*;
+
 /**
  * A Triplestore web application
  * @author Raymon de Looff, Thijs Clowting
  */
 public class App {
 
-    public static void main(String[] args) {
+    private static String title = "A web-based Triplestore explorer";
 
+    public App() {
+        buildRoutes();
+    }
+
+    /**
+     * Responsible for building the required routes
+     */
+    private void buildRoutes() {
+
+        get("/hello", (req, res) -> "Hello World");
+
+    }
+
+    public static void main(String[] args) {
+        App app = new App();
     }
 
 }
