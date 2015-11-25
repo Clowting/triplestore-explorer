@@ -1,0 +1,23 @@
+{
+  "name": "Tripestore Explorer",
+  "homepage": "https://github.com/MightyDutchLord/triplestore-explorer",
+  "authors": [
+    "Raymon de Looff",
+    "Thijs Clowting"
+  ],
+  "description": "An Apache Jena Fuseki triplestore explorer.",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}
