@@ -2,3 +2,4 @@
 target/
 triplestore-explorer.iml
 bower_components/
+config.codekit
