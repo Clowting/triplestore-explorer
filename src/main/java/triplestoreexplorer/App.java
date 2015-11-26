@@ -1,5 +1,7 @@
 package triplestoreexplorer;
 
+import triplestoreexplorer.controller.QueryBuilder;
+
 import static spark.Spark.*;
 
 import spark.ModelAndView;
@@ -16,8 +18,11 @@ import java.util.Map;
  */
 public class App {
 
-    public App() {
+    private static String title = "A web-based Triplestore explorer";
+    private String dataStore;
 
+    public App() {
+        this.dataStore = "http://localhost:3030/elvisimp/";
     }
 
     /**
@@ -49,6 +54,9 @@ public class App {
 
         // Build routes
         app.buildRoutes();
+
+        QueryBuilder queryBuilder = new QueryBuilder("http://localhost:3030/elvisimp/");
+        queryBuilder.query();
     }
 
 }
