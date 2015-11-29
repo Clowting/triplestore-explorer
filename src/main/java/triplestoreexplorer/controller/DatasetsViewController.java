@@ -1,6 +1,5 @@
 package triplestoreexplorer.controller;
 
-import triplestoreexplorer.model.DatasetsViewModel;
 import triplestoreexplorer.model.ViewModel;
 
 
@@ -9,8 +8,6 @@ import triplestoreexplorer.model.ViewModel;
  * @author Raymon de Looff, Thijs Clowting
  */
 public class DatasetsViewController extends ViewController {
-
-    private DatasetsViewModel model;
 
     /**
      * The default constructor for the datasets webpage
@@ -21,8 +18,10 @@ public class DatasetsViewController extends ViewController {
     }
 
     @Override
-    protected void dispatch() {
+    public void dispatch() {
+        setTitle("View datasets");
 
+        System.out.println("Dispatch " + this.getClass());
     }
 
 }
