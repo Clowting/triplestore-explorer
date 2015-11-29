@@ -34,7 +34,7 @@ public class App {
             DatasetsViewController datasetsViewController = new DatasetsViewController(viewModel, "datasets");
 
             // Execute
-            datasetsViewController.dispatch();
+            datasetsViewController.dispatch(request);
 
             return datasetsViewController.render();
         });

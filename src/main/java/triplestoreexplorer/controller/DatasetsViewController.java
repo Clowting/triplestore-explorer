@@ -1,5 +1,6 @@
 package triplestoreexplorer.controller;
 
+import spark.Request;
 import triplestoreexplorer.model.ViewModel;
 
 
@@ -18,7 +19,7 @@ public class DatasetsViewController extends ViewController {
     }
 
     @Override
-    public void dispatch() {
+    public void dispatch(Request request) {
         setTitle("View datasets");
 
         System.out.println("Dispatch " + this.getClass());

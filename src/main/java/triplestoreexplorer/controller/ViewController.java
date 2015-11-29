@@ -1,6 +1,7 @@
 package triplestoreexplorer.controller;
 
 import spark.ModelAndView;
+import spark.Request;
 import triplestoreexplorer.model.ViewModel;
 import triplestoreexplorer.template.HandlebarsTemplateEngine;
 
@@ -59,7 +60,7 @@ public abstract class ViewController {
     /**
      * Called on page load, use this method to set up the data array that needs to be passed to the template
      */
-    public abstract void dispatch();
+    public abstract void dispatch(Request request);
 
     /**
      * Renders the web page
