@@ -6,10 +6,22 @@
 
     <!-- Container -->
     <div class="container">
+
+        <!-- Navigation -->
         {{> _nav this }}
 
+        <!-- Page Header -->
+        <div class="page-header">
+            {{#block "page-header" }}{{/block}}
+        </div>
+
+        <!-- Content -->
         {{#block "content" }}
         {{/block}}
+
+        <hr>
+        <!-- Footer -->
+        {{> _footer this }}
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
