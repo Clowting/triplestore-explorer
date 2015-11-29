@@ -1,12 +1,11 @@
 package triplestoreexplorer;
 
-import triplestoreexplorer.controller.QueryBuilder;
-
 import static spark.Spark.*;
 
 import spark.ModelAndView;
-import triplestoreexplorer.controller.DatasetsPageController;
-import triplestoreexplorer.model.DatasetsPageModel;
+import triplestoreexplorer.controller.DatasetsViewController;
+import triplestoreexplorer.model.DatasetsViewModel;
+import triplestoreexplorer.model.ViewModel;
 import triplestoreexplorer.template.*;
 
 import java.util.HashMap;
@@ -36,16 +35,24 @@ public class App {
         // Define routes
         get("/", (req, res) -> "Hello World");
 
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("name", "Sam");
 
         // Datasets
-        DatasetsPageModel datasetsPageModel = new DatasetsPageModel();
-        DatasetsPageController datasetsPageController = new DatasetsPageController();
-        get("/datasets", (request, response) -> new ModelAndView(map, "datasets"), new HandlebarsTemplateEngine());
+        /*get("/datasets", (request, response) -> {
+            ViewModel viewModel = new ViewModel();
+            DatasetsViewController datasetsViewController = new DatasetsViewController(viewModel, "datasets");
+
+            // Set parameters
+            //datasetsViewController;
+
+            response.
+
+            return new ModelAndView(map, "base"), new HandlebarsTemplateEngine();
+        });*/
 
         // Handlebars test
-        get("/test", (rq, rs) -> new ModelAndView(map, "base"), new HandlebarsTemplateEngine());
+        get("/test", (request, response) -> new ModelAndView(map, "base"), new HandlebarsTemplateEngine());
 
     }
 
@@ -54,9 +61,6 @@ public class App {
 
         // Build routes
         app.buildRoutes();
-
-        QueryBuilder queryBuilder = new QueryBuilder("http://localhost:3030/elvisimp/");
-        queryBuilder.query();
     }
 
 }

@@ -70,10 +70,12 @@ public class HandlebarsTemplateEngine extends TemplateEngine {
     @Override
     public String render(ModelAndView modelAndView) {
         String viewName = modelAndView.getViewName();
+
         try {
             Template template = handlebars.compile(viewName);
             return template.apply(modelAndView.getModel());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeIOException(e);
         }
     }
