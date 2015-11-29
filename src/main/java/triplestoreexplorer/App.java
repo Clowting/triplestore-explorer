@@ -2,6 +2,7 @@ package triplestoreexplorer;
 
 import static spark.Spark.*;
 
+import com.github.kevinsawicki.http.HttpRequest;
 import triplestoreexplorer.controller.DatasetsViewController;
 import triplestoreexplorer.model.ViewModel;
 import triplestoreexplorer.template.HandlebarsTemplateEngine;
@@ -39,6 +40,13 @@ public class App {
 
             return datasetsViewController.render();
         }, new HandlebarsTemplateEngine());
+
+        get("/datasets/remove/:dataset", (request, response) -> {
+            HttpRequest deleteRequest = HttpRequest.delete("http://localhost:3030/$/datasets/" + request.params(":dataset"));
+            response.status(deleteRequest.code());
+
+            return deleteRequest.body();
+        });
 
     }
 

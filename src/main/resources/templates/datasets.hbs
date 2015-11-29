@@ -1,5 +1,31 @@
-{{# partial "content" }}
-    <p>Datasets</p>
-{{/partial }}
+{{#partial "page-header"}}
+    <h1>Datasets <small>Manage your datasets</small></h1>
+    <p>Add and create new datasets or remove existing datasets.</p>
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="table-responsive">
+        <table class="table vertical-align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each datasets}}
+                <tr>
+                    <td>{{ds_name}}</td>
+                    <td>
+                        <div>
+                            <a class="btn btn-sm btn-danger action remove" data-ds-id="{{ds_name}}"><i class="fa fa-trash"></i> Remove</a>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/partial}}
 
 {{> base}}
