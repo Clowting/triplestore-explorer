@@ -2,14 +2,8 @@ package triplestoreexplorer;
 
 import static spark.Spark.*;
 
-import spark.ModelAndView;
 import triplestoreexplorer.controller.DatasetsViewController;
-import triplestoreexplorer.model.DatasetsViewModel;
 import triplestoreexplorer.model.ViewModel;
-import triplestoreexplorer.template.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A Triplestore web application
@@ -17,7 +11,6 @@ import java.util.Map;
  */
 public class App {
 
-    private static String title = "A web-based Triplestore explorer";
     private String dataStore;
 
     public App() {
@@ -35,24 +28,16 @@ public class App {
         // Define routes
         get("/", (req, res) -> "Hello World");
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("name", "Sam");
-
         // Datasets
-        /*get("/datasets", (request, response) -> {
+        get("/datasets", (request, response) -> {
             ViewModel viewModel = new ViewModel();
             DatasetsViewController datasetsViewController = new DatasetsViewController(viewModel, "datasets");
 
-            // Set parameters
-            //datasetsViewController;
+            // Execute
+            datasetsViewController.dispatch();
 
-            response.
-
-            return new ModelAndView(map, "base"), new HandlebarsTemplateEngine();
-        });*/
-
-        // Handlebars test
-        get("/test", (request, response) -> new ModelAndView(map, "base"), new HandlebarsTemplateEngine());
+            return datasetsViewController.render();
+        });
 
     }
 
