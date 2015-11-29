@@ -66,9 +66,8 @@ public abstract class ViewController {
      * Renders the web page
      * @return The web page
      */
-    public String render() {
-        ModelAndView modelAndView = new ModelAndView(model.getData(), templateViewName);
-        return new HandlebarsTemplateEngine().render(modelAndView);
+    public ModelAndView render() {
+       return new ModelAndView(model.getData(), templateViewName);
     }
 
 }

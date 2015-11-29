@@ -4,6 +4,7 @@ import static spark.Spark.*;
 
 import triplestoreexplorer.controller.DatasetsViewController;
 import triplestoreexplorer.model.ViewModel;
+import triplestoreexplorer.template.HandlebarsTemplateEngine;
 
 /**
  * A Triplestore web application
@@ -37,7 +38,7 @@ public class App {
             datasetsViewController.dispatch(request);
 
             return datasetsViewController.render();
-        });
+        }, new HandlebarsTemplateEngine());
 
     }
 
