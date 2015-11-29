@@ -1,0 +1,36 @@
+{{#partial "page-header"}}
+    <h1>Datasets <small>Manage your datasets</small></h1>
+    <p>Add and create new datasets or remove existing datasets.</p>
+{{/partial}}
+
+{{#partial "content"}}
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/datasets">View datasets</a></li>
+        <li role="presentation" class="active"><a href="/datasets/add">Add dataset</a></li>
+    </ul>
+
+    <form action="/datasets/add" role="form" method="post">
+        <div class="form-group">
+            <label for="dbName" class="control-label col-sm-4">Dataset name:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="dbName" id="dbName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dbType" class="control-label col-sm-4">Dataset type:</label>
+            <div class="col-sm-8">
+                <div class="radio">
+                    <label><input type="radio" name="dbType" id="dbType" value="mem" checked>In-memory – dataset will be recreated when Fuseki restarts, but contents will be lost</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="dbType" id="dbType" value="tdb">Persistent – dataset will persist across Fuseki restarts</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add dataset</button>
+        </div>
+    </form>
+{{/partial}}
+
+{{> base}}
