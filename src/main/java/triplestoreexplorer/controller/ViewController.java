@@ -1,9 +1,8 @@
 package triplestoreexplorer.controller;
 
+import spark.ModelAndView;
 import triplestoreexplorer.model.ViewModel;
 import triplestoreexplorer.template.HandlebarsTemplateEngine;
-
-import java.util.Map;
 
 /**
  * This is the default page controller for every webpage
@@ -11,7 +10,7 @@ import java.util.Map;
  */
 public abstract class ViewController {
 
-    private String viewName;
+    private String templateViewName;
     private HandlebarsTemplateEngine handlebarsTemplateEngine;
     protected ViewModel model;
     protected QueryBuilder queryBuilder;
@@ -19,40 +18,56 @@ public abstract class ViewController {
     /**
      * The default constructor
      */
-    public ViewController(ViewModel model, String viewName) {
-        this.viewName = viewName;
+    public ViewController(ViewModel model, String templateViewName) {
+        this.templateViewName = templateViewName;
         this.model = model;
         this.handlebarsTemplateEngine = new HandlebarsTemplateEngine();
         //queryBuilder = new QueryBuilder();
     }
 
     /**
-     * Returns the name of the view
-     * @return The name of the view
+     * Returns the name of the template view
+     * @return The name of the template view
      */
-    public String getViewName() {
-        return viewName;
+    public String getTemplateViewName() {
+        return templateViewName;
     }
 
     /**
-     * Sets the name of the view
-     * @return The name of the view
+     * Sets the name of the template view
      */
-    public void setViewName(String viewName) {
-        this.viewName = viewName;
+    public void setTemplateViewName(String templateViewName) {
+        this.templateViewName = templateViewName;
     }
 
     /**
-     * Returns the data of the view
-     * @return The data of the view
+     * Returns the title of the view
+     * @return The title of the view
      */
-    public Map getData() {
-        return model.getData();
+    public String getTitle() {
+        return model.getTitle();
+    }
+
+    /**
+     * Sets the title of the view
+     * @param title The title of the view
+     */
+    public void setTitle(String title) {
+        model.setTitle(title);
     }
 
     /**
      * Called on page load, use this method to set up the data array that needs to be passed to the template
      */
-    protected abstract void dispatch();
+    public abstract void dispatch();
+
+    /**
+     * Renders the web page
+     * @return The web page
+     */
+    public String render() {
+        ModelAndView modelAndView = new ModelAndView(model.getData(), templateViewName);
+        return new HandlebarsTemplateEngine().render(modelAndView);
+    }
 
 }
