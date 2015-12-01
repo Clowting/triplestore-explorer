@@ -14,7 +14,6 @@ public abstract class ViewController {
     private String templateViewName;
     private HandlebarsTemplateEngine handlebarsTemplateEngine;
     protected ViewModel model;
-    protected QueryBuilder queryBuilder;
 
     /**
      * The default constructor
@@ -23,7 +22,6 @@ public abstract class ViewController {
         this.templateViewName = templateViewName;
         this.model = model;
         this.handlebarsTemplateEngine = new HandlebarsTemplateEngine();
-        //queryBuilder = new QueryBuilder();
     }
 
     /**
