@@ -64,6 +64,17 @@ public class App {
             return deleteRequest.body();
         });
 
+        // Query
+        get("/query", (request, response) -> {
+            ViewModel viewModel = new ViewModel();
+            QueryViewController queryViewController = new QueryViewController(viewModel, "query");
+
+            // Execute
+            queryViewController.dispatch(request);
+
+            return queryViewController.render();
+        }, new HandlebarsTemplateEngine());
+
     }
 
     public static void main(String[] args) {

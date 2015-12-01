@@ -19,15 +19,46 @@ $(document).ready(function() {
             if(button.hasClass('remove')) {
                 $.ajax({
                     url: 'http://localhost:4567/datasets/remove' + datastore_id,
-                    success: function(result) {
+                    success: function() {
                         showModal('Remove success', 'Succesfully removed dataset <code>' + datastore_id + '</code>.');
                         button.closest('tr').remove();
                     },
-                    error: function(result) {
+                    error: function() {
                         showModal('Remove failed', 'Failed to removed dataset <code>' + datastore_id + '</code>!');
                     }
                 });
             }
         }
+    });
+
+    // SPARQL editor
+    var yasqe = YASQE.fromTextArea(document.getElementById('query'));
+
+    $("#run-query").click(function() {
+        var options = {
+            value: yasqe.getValue(),
+            sparql: {
+                endpoint: 'http://localhost:3030/' + $("#endpoint").val() + '/query',
+                callbacks: {
+                    beforeSend: function() {
+                        console.log('before send');
+                    },
+                    complete: function() {
+                        console.log('complete');
+                    },
+                    error: function() {
+                        showModal('Error', 'Could not execute query!.');
+                    },
+                    success: function() {
+                        console.log('success');
+                        console.log(result);
+                    }
+                }
+            }
+        };
+
+        yasqe.query(options);
+
+        return false;
     });
 });
