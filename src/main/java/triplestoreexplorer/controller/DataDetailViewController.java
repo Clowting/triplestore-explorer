@@ -4,6 +4,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 import spark.Request;
 import triplestoreexplorer.formatter.Formatter;
+import triplestoreexplorer.helper.Base64Helper;
 import triplestoreexplorer.model.ViewModel;
 
 import java.io.UnsupportedEncodingException;
@@ -75,7 +76,7 @@ public class DataDetailViewController extends ViewController {
         addRequestDataToModel(request);
 
         // Query building
-        String query = buildQuery(request.params(":spo"), request.params(":value"));
+        String query = buildQuery(request.params(":spo"), Base64Helper.decode(request.params(":value")));
 
         // Execute query
         String result = executeQuery(request.params(":dataset"), request.params(":method"), query);
