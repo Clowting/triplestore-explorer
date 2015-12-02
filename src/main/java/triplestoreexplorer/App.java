@@ -13,12 +13,6 @@ import triplestoreexplorer.template.HandlebarsTemplateEngine;
  */
 public class App {
 
-    private String dataStore;
-
-    public App() {
-        this.dataStore = "http://localhost:3030/elvisimp/";
-    }
-
     /**
      * Responsible for building the required routes
      */
