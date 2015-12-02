@@ -6,19 +6,19 @@ import spark.Request;
 import triplestoreexplorer.model.ViewModel;
 
 /**
- * Created by thijsclowting on 02-12-15.
+ * This is the controller for the browse webpage
+ * @author Raymon de Looff, Thijs Clowting
  */
 public class DataViewController extends ViewController {
 
 
     /**
-     * The default constructor
-     *
-     * @param model
-     * @param templateViewName
+     * The default constructor for the browse webpage
+     * @param model The model used for the webpage
+     * @param viewName The name of the template view
      */
-    public DataViewController(ViewModel model, String templateViewName) {
-        super(model, templateViewName);
+    public DataViewController(ViewModel model, String viewName) {
+        super(model, viewName);
     }
 
     @Override
