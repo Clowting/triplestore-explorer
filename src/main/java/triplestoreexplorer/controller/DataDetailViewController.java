@@ -3,6 +3,7 @@ package triplestoreexplorer.controller;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 import spark.Request;
+import triplestoreexplorer.formatter.Formatter;
 import triplestoreexplorer.model.ViewModel;
 
 import java.io.UnsupportedEncodingException;
@@ -83,6 +84,6 @@ public class DataDetailViewController extends ViewController {
         jsonObject.getJSONObject("results");
 
         // Add datasets
-        model.addData("result", jsonObject.getJSONObject("results").get("bindings"));
+        model.addData("result", Formatter.jsonStringToHashMap(jsonObject.getJSONObject("results").toString()));
     }
 }
