@@ -20,10 +20,10 @@
             <tbody>
             {{#each datasets}}
                 <tr>
-                    <td>{{ds_name}}</td>
+                    <td>{{getValue this "ds_name"}}</td>
                     <td>
                         <div>
-                            <a class="btn btn-sm btn-danger action remove" data-ds-id="{{ds_name}}"><i class="fa fa-trash"></i> Remove</a>
+                            <a class="btn btn-sm btn-danger action remove" data-ds-id="{{getValue this "ds_name"}}"><i class="fa fa-trash"></i> Remove</a>
                         </div>
                     </td>
                 </tr>

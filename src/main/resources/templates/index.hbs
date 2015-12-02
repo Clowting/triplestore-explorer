@@ -43,10 +43,10 @@
             <tbody>
             {{#each datasets}}
                 <tr>
-                    <td>{{ds_name}}</td>
+                    <td>{{getValue this "ds_name"}}</td>
                     <td>
                         <div>
-                            <a href="/data{{ds_name}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View dataset</a>
+                            <a href="/data{{getValue this "ds_name"}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View dataset</a>
                         </div>
                     </td>
                 </tr>
