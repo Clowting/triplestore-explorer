@@ -1,8 +1,11 @@
 package triplestoreexplorer.formatter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -51,6 +54,23 @@ public class Formatter {
         }
 
         return formattedObject;
+    }
+
+    /**
+     * Converts a JSON String to a HashMap
+     * @param jsonString The JSON String to be converted
+     * @return A HashMap with all the JSON data
+     */
+    public static HashMap<String, Object> jsonStringToHashMap(String jsonString) {
+
+        HashMap<String,Object> result = null;
+        try {
+            result = new ObjectMapper().readValue(jsonString, HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 }
