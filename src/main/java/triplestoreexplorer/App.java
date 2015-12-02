@@ -30,6 +30,19 @@ public class App {
         // Define routes
         get("/", (req, res) -> "Hello World");
 
+        // Data
+        get("/data/:dataset/:page", (request, response) -> {
+            ViewModel viewModel = new ViewModel();
+            viewModel.addData("dataset", request.params(":dataset"));
+            viewModel.addData("page", request.params(":page"));
+            DataViewController dataViewController = new DataViewController(viewModel, "data");
+
+            // Execute
+            dataViewController.dispatch(request);
+
+            return dataViewController.render();
+        }, new HandlebarsTemplateEngine());
+
         // Datasets
         get("/datasets", (request, response) -> {
             ViewModel viewModel = new ViewModel();
