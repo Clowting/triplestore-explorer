@@ -35,8 +35,7 @@ $(document).ready(function() {
     var yasqe = YASQE.fromTextArea(document.getElementById('query'));
 
     $("#run-query").click(function() {
-        var options = {
-            value: yasqe.getValue(),
+        yasqe.options = {
             sparql: {
                 endpoint: 'http://localhost:3030/' + $("#endpoint").val() + '/query',
                 callbacks: {
@@ -57,7 +56,7 @@ $(document).ready(function() {
             }
         };
 
-        yasqe.query(options);
+        yasqe.query();
 
         return false;
     });
