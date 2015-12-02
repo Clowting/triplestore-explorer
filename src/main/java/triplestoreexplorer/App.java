@@ -28,7 +28,15 @@ public class App {
         staticFileLocation("/public");
 
         // Define routes
-        get("/", (req, res) -> "Hello World");
+        get("/", (request, response) -> {
+            ViewModel viewModel = new ViewModel();
+            IndexViewController indexViewController = new IndexViewController(viewModel, "index");
+
+            // Execute
+            indexViewController.dispatch(request);
+
+            return indexViewController.render();
+        }, new HandlebarsTemplateEngine());
 
         // Data
         get("/data/:dataset/:page", (request, response) -> {

@@ -1,0 +1,59 @@
+{{#partial "page-header"}}
+    <h1>Triplestore Explorer <small>Explore your datasets easily</small></h1>
+    <p>This Triplestore Explorer makes exploring triplestores and viewing relations between triples very easy (hopefully).</p>
+{{/partial}}
+
+{{#partial "content"}}
+    <h2>Fuseki server status</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>Version</strong></td>
+                            <td>{{version}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server started</strong></td>
+                            <td>{{startDateTime}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uptime</strong></td>
+                            <td>{{uptime}} seconds</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Table of datasets -->
+    <h2>Available datasets</h2>
+    <div class="table-responsive">
+        <table class="table table-striped vertical-align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each datasets}}
+                <tr>
+                    <td>{{ds_name}}</td>
+                    <td>
+                        <div>
+                            <a href="/data{{ds_name}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View dataset</a>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/partial}}
+
+{{> base}}
