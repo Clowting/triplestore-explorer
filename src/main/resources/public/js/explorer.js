@@ -9,6 +9,54 @@ function showModal(title, text) {
     modal.modal('show');
 }
 
+function showQueryResult(results) {
+    var parsed_results;
+
+    // Clear old results
+    $('#results tbody').html('');
+
+    if(parsed_results = jQuery.parseJSON(results)) {
+        $.each(parsed_results.results.bindings, function(key, result) {
+            var subject = result.subject;
+            var predicate = result.predicate;
+            var object = result.object;
+
+            // Make row
+            var row = '<tr>';
+
+            // Subject
+            if(subject['type'] === 'uri') {
+                row += '<td><a href="' + subject.value + '">' + subject.value + '</a></td>';
+            }
+            else {
+                row += '<td>' + subject.value + '</td>';
+            }
+
+            // Predicate
+            if(predicate['type'] === 'uri') {
+                row += '<td><a href="' + predicate.value + '">' + predicate.value + '</a></td>';
+            }
+            else {
+                row += '<td>' + predicate.value + '</td>';
+            }
+
+            // Object
+            if(object['type'] === 'uri') {
+                row += '<td><a href="' + object.value + '">' + object.value + '</a></td>';
+            }
+            else {
+                row += '<td>' + object.value + '</td>';
+            }
+
+            // Close row
+            row +='</tr>';
+
+            // Append row to table
+            $('#results tbody').append(row);
+        });
+    }
+}
+
 $(document).ready(function() {
     $('.action').click(function() {
         var button = $(this);
@@ -37,22 +85,16 @@ $(document).ready(function() {
     $("#run-query").click(function() {
         yasqe.options = {
             sparql: {
-                endpoint: 'http://localhost:3030/' + $("#endpoint").val() + '/query',
+                endpoint: 'http://localhost:4567/query/execute/query/' + $("#endpoint").val(),
                 callbacks: {
-                    beforeSend: function() {
-                        console.log('before send');
-                    },
-                    complete: function() {
-                        console.log('complete');
-                    },
                     error: function() {
-                        showModal('Error', 'Could not execute query!.');
+                        showModal('Error', 'Could not execute query!');
                     },
-                    success: function() {
-                        console.log('success');
-                        console.log(result);
+                    success: function(result) {
+                        showQueryResult(result);
                     }
-                }
+                },
+                queryName: 'query'
             }
         };
 

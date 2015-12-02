@@ -75,6 +75,14 @@ public class App {
             return queryViewController.render();
         }, new HandlebarsTemplateEngine());
 
+        get("/query/execute/:method/:dataset", (request, response) -> {
+            String query = java.net.URLEncoder.encode(request.queryParams("query"), "UTF-8");
+            HttpRequest queryRequest = HttpRequest.get("http://localhost:3030/" + request.params(":dataset") + "/query?" + request.params(":method") + "=" + query);
+            response.status(queryRequest.code());
+
+            return queryRequest.body();
+        });
+
     }
 
     public static void main(String[] args) {
