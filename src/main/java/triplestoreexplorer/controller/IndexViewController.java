@@ -1,14 +1,10 @@
 package triplestoreexplorer.controller;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.github.kevinsawicki.http.HttpRequest;
+import org.json.JSONObject;
 import spark.Request;
 import triplestoreexplorer.formatter.Formatter;
 import triplestoreexplorer.model.ViewModel;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 
 
 /**
@@ -31,25 +27,15 @@ public class IndexViewController extends ViewController {
         // Set title
         setTitle("Overview");
 
-        // Get datasets from Fuseki
-        JSONParser jsonParser = new JSONParser();
+        HttpRequest getRequest = HttpRequest.get("http://localhost:3030/$/server");
+        JSONObject jsonObject = new JSONObject(getRequest.body());
+        JSONObject formattedObject = Formatter.replaceDotInKeysFromJSONObject(jsonObject);
 
-        try {
-            URL oracle = new URL("http://localhost:3030/$/server");
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(oracle.openStream()));
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(in);
-            JSONObject formattedObject = Formatter.replaceDotInKeysFromJSONObject(jsonObject);
-
-            // Add datasets
-            model.addData("version", formattedObject.get("version"));
-            model.addData("startDateTime", formattedObject.get("startDateTime"));
-            model.addData("uptime", formattedObject.get("uptime"));
-            model.addData("datasets", formattedObject.get("datasets"));
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Add datasets
+        model.addData("version", formattedObject.get("version"));
+        model.addData("startDateTime", formattedObject.get("startDateTime"));
+        model.addData("uptime", formattedObject.get("uptime"));
+        model.addData("datasets", formattedObject.get("datasets"));
     }
 
 }

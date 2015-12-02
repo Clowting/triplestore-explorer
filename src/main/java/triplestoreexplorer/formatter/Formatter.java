@@ -1,7 +1,7 @@
 package triplestoreexplorer.formatter;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Iterator;
 
@@ -36,7 +36,7 @@ public class Formatter {
                         JSONObject jsonObjectItem = (JSONObject) item;
                         object = replaceDotInKeysFromJSONObject(jsonObjectItem);
 
-                        array.add(object);
+                        array.put(object);
                     }
                 }
 

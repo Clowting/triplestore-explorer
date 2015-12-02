@@ -50,6 +50,16 @@ public class App {
             return dataViewController.render();
         }, new HandlebarsTemplateEngine());
 
+        get("/data/:dataset/:method/:spo/:value", (request, response) -> {
+            ViewModel viewModel = new ViewModel();
+            DataDetailViewController dataDetailViewController = new DataDetailViewController(viewModel, "data");
+
+            // Execute
+            dataDetailViewController.dispatch(request);
+
+            return dataDetailViewController.render();
+        }, new HandlebarsTemplateEngine());
+
         // Datasets
         get("/datasets", (request, response) -> {
             ViewModel viewModel = new ViewModel();
