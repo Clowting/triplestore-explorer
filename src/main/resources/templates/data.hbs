@@ -13,13 +13,13 @@
                 </tr>
             </thead>
             <tbody>
-            <!--{{#each datasets}}-->
-                <!--<tr>-->
-                    <!--<td>{{ds_name}}</td>-->
-                    <!--<td></td>-->
-                    <!--<td></td>-->
-                <!--</tr>-->
-            <!--{{/each}}-->
+            {{#each data.results.bindings}}
+                <tr>
+                    <td><a href="/data/{{dataset}}/query/s/{{s.value}}">{{s.value}}</a></td>
+                    <td><a href="/data/{{dataset}}/query/p/{{p.value}}">{{p.value}}</a></td>
+                    <td><a href="/data/{{dataset}}/query/o/{{o.value}}">{{o.value}}</a></td>
+                </tr>
+            {{/each}}
             </tbody>
         </table>
     </div>

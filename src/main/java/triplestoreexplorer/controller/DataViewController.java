@@ -1,8 +1,7 @@
 package triplestoreexplorer.controller;
 
-import org.apache.jena.arq.querybuilder.SelectBuilder;
-import org.apache.jena.query.Query;
 import spark.Request;
+import triplestoreexplorer.formatter.Formatter;
 import triplestoreexplorer.model.ViewModel;
 
 /**
@@ -26,7 +25,7 @@ public class DataViewController extends ViewController {
      */
     private void addRequestDataToModel(Request request) {
         model.addData("dataset", request.params(":dataset"));
-        model.addData("page", request.params(":page"));
+        model.addData("data", Formatter.jsonStringToHashMap(request.attribute("jsonResponse")));
     }
 
     @Override
@@ -36,12 +35,6 @@ public class DataViewController extends ViewController {
         // Add request data to model
         addRequestDataToModel(request);
 
-        // Query building
-        SelectBuilder sb = new SelectBuilder()
-                .addVar( "*" )
-                .addWhere( "?s", "?p", "?o" );
-
-        Query q = sb.build();
 
     }
 }

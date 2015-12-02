@@ -33,8 +33,15 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         // Data
-        get("/data/:dataset/:page", (request, response) -> {
+        get("/data/:dataset", (request, response) -> {
+            // Query
+            String query = "SELECT*WHERE{?p?s?o}";
+            HttpRequest queryRequest = HttpRequest.get("http://localhost:3030/" + request.params(":dataset") + "/query?query=" + query);
+            response.status(queryRequest.code());
+
             ViewModel viewModel = new ViewModel();
+            request.attribute("jsonResponse", queryRequest.body());
+
             DataViewController dataViewController = new DataViewController(viewModel, "data");
 
             // Execute
