@@ -1,5 +1,7 @@
 package triplestoreexplorer.controller;
 
+import com.github.kevinsawicki.http.HttpRequest;
+import org.json.JSONObject;
 import spark.Request;
 import triplestoreexplorer.formatter.Formatter;
 import triplestoreexplorer.model.ViewModel;
@@ -25,7 +27,6 @@ public class DataViewController extends ViewController {
      */
     private void addRequestDataToModel(Request request) {
         model.addData("dataset", request.params(":dataset"));
-        model.addData("data", Formatter.jsonStringToHashMap(request.attribute("jsonResponse")));
     }
 
     @Override
@@ -35,6 +36,15 @@ public class DataViewController extends ViewController {
         // Add request data to model
         addRequestDataToModel(request);
 
+        // Query
+        String query = "SELECT*WHERE{?p?s?o}";
+        HttpRequest queryRequest = HttpRequest.get("http://localhost:3030/" + request.params(":dataset") + "/query?query=" + query);
+        String result = queryRequest.body();
 
+        JSONObject jsonObject = new JSONObject(result);
+        jsonObject.getJSONObject("results");
+
+        // Add datasets
+        model.addData("result", Formatter.jsonStringToHashMap(jsonObject.getJSONObject("results").toString()));
     }
 }
