@@ -63,10 +63,12 @@ public class Formatter {
      */
     public static HashMap<String, Object> jsonStringToHashMap(String jsonString) {
 
-        HashMap<String,Object> result = null;
+        HashMap<String, Object> result = null;
+
         try {
             result = new ObjectMapper().readValue(jsonString, HashMap.class);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
