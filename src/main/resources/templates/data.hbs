@@ -15,9 +15,9 @@
             <tbody>
             {{#each result.bindings}}
                 <tr>
-                    <td><a href="/data/{{dataset}}/query/s/{{s.value}}">{{s.value}}</a></td>
-                    <td><a href="/data/{{dataset}}/query/p/{{p.value}}">{{p.value}}</a></td>
-                    <td><a href="/data/{{dataset}}/query/o/{{o.value}}">{{o.value}}</a></td>
+                    <td><a href="/data/{{dataset}}/query/s/{{encode s.value}}">{{s.value}}</a></td>
+                    <td><a href="/data/{{dataset}}/query/p/{{encode p.value}}">{{p.value}}</a></td>
+                    <td><a href="/data/{{dataset}}/query/o/{{encode o.value}}">{{o.value}}</a></td>
                 </tr>
             {{/each}}
             </tbody>

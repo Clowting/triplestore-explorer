@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jetty.io.RuntimeIOException;
 
-import org.json.JSONObject;
 import spark.ModelAndView;
 import spark.TemplateEngine;
 
@@ -33,6 +32,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import com.github.jknack.handlebars.io.TemplateSource;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import triplestoreexplorer.helper.Base64Helper;
 import triplestoreexplorer.helper.JSONHelper;
 
 /**
@@ -64,6 +64,7 @@ public class HandlebarsTemplateEngine extends TemplateEngine {
 
         // Register helpers
         handlebars.registerHelpers(JSONHelper.class);
+        handlebars.registerHelpers(Base64Helper.class);
 
         // Set Guava cache.
         Cache<TemplateSource, Template> cache = CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.MINUTES)
