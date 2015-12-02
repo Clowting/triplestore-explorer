@@ -41,8 +41,6 @@ public class App {
         // Data
         get("/data/:dataset/:page", (request, response) -> {
             ViewModel viewModel = new ViewModel();
-            viewModel.addData("dataset", request.params(":dataset"));
-            viewModel.addData("page", request.params(":page"));
             DataViewController dataViewController = new DataViewController(viewModel, "data");
 
             // Execute

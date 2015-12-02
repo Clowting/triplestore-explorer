@@ -11,7 +11,6 @@ import triplestoreexplorer.model.ViewModel;
  */
 public class DataViewController extends ViewController {
 
-
     /**
      * The default constructor for the browse webpage
      * @param model The model used for the webpage
@@ -21,9 +20,21 @@ public class DataViewController extends ViewController {
         super(model, viewName);
     }
 
+    /**
+     * Adds request data to the model
+     * @param request The request object
+     */
+    private void addRequestDataToModel(Request request) {
+        model.addData("dataset", request.params(":dataset"));
+        model.addData("page", request.params(":page"));
+    }
+
     @Override
     public void dispatch(Request request) {
-        setTitle("Data overview");
+        setTitle("Browse data");
+
+        // Add request data to model
+        addRequestDataToModel(request);
 
         // Query building
         SelectBuilder sb = new SelectBuilder()
