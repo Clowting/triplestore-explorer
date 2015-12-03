@@ -42,9 +42,19 @@ public class DataDetailViewController extends ViewController {
      * @return The built query
      */
     private String buildQuery(String spo, String value) {
+        boolean isHttp = (value.substring(0, 7).equals("http://"));
+        String sparqlValue = "";
+
+        if(isHttp) {
+            sparqlValue = "<" + value + ">";
+        }
+        else {
+            sparqlValue = "\"" + value + "\"";
+        }
+
         return "SELECT * WHERE{ ?p ?s ?o }" +
                "VALUES (?" + spo + ") {" +
-                    "(\"" + value + "\")" +
+                    "(" + sparqlValue + ")" +
                "}";
     }
 
